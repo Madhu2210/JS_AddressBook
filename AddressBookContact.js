@@ -184,6 +184,30 @@ function searchByCityOrState(contactArray,cityorstate){
         contactArray.filter(name => name.state == cityorstate).forEach(contact=>console.log(contact.toString()));
     }
 }
+
+function isPresentInState(contactArray,name,stateName){
+    console.log('View person contact by state');
+   let contact=contactArray.filter(a => a.state == stateName).find(b => b.firstName==name);
+   console.log(contact);
+}
+
+function isPresentInCity(contactArray, name, cityName) {
+    console.log('View person contact by city');
+   let contact=contactArray.filter(a => a.city == cityName).find(b => b.firstName==name);
+   console.log(contact);
+    
+}
+
+function getCountByCity(contactArray, cityName) {
+    let count = contactArray.filter(contact => contact.city == cityName).reduce((a, b) => a.concat(b), []).length;
+    console.log("Number of contacts living in this city are: " + count);
+}
+
+function getCountByState(contactArray, stateName) {
+    let count = contactArray.filter(contact => contact.state == stateName).reduce((a, b) => a.concat(b), []).length;
+    console.log("Number of contacts living in this state are: " + count);
+}
+
 try {
     addressBookArray.push(new Contact("Madhu", "Kahar", "Kamothe","Mumbai", "Maharastra", 410209, "91 9967997037", "madhu@gmail.com"));
 } catch (e) {
@@ -209,3 +233,7 @@ addContact(addressBookArray,"Jyoti", "Sharma");
 console.log(addressBookArray);  
 searchByCityOrState(addressBookArray,'Delhi');
 searchByCityOrState(addressBookArray,'UP');
+isPresentInState(addressBookArray,"Raj","UP");
+isPresentInCity(addressBookArray,"Jyoti","Delhi");
+getCountByCity(addressBookArray, "Delhi");
+getCountByState(addressBookArray, "UP");
