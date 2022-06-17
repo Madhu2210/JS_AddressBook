@@ -155,6 +155,24 @@ function deleteContact(firstName, lastName) {
     }
 }
 
+function countContacts(contactArray){
+    let count= contactArray.reduce((a, b) => a.concat(b), []).length;
+    console.log("Number of contacts is: "+count);
+ }
+function addContact(addressBookArray,firstName,lastName){
+    if(addressBookArray.find((contact)=>(contact.firstName+" "+contact.lastName)==(firstName+" "+lastName))){   
+        console.log("Given contact already present in addressbook.");
+    }
+else{
+    try{
+        addressBookArray.push(new Contact(firstName,lastName,'KMnagar','Pune','Maharashtra', 580109, '91 8989658965', "riya@gmail.com"));
+        
+        console.log("Contact is added. ");
+    }catch(Exception){
+        console.log(Exception);
+    }
+}
+}
 try {
     addressBookArray.push(new Contact("Madhu", "Kahar", "Kamothe","Mumbai", "Maharastra", 410209, "91 9967997037", "madhu@gmail.com"));
 } catch (e) {
@@ -175,3 +193,6 @@ console.log(addressBookArray);
 
 deleteContact("Madhu", "Kahar");
 console.log(addressBookArray);
+countContacts(addressBookArray);
+addContact(addressBookArray,"Jyoti", "Sharma");
+console.log(addressBookArray);  
